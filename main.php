@@ -1,29 +1,25 @@
 <?php
-echo 'hello';
-
-
-$sql = "SELECT * FROM " . MAIN_DB_PREFIX . "facture";
+$sql = "SELECT * FROM " . MAIN_DB_PREFIX . 'facture';
 
 $resql = $db->query($sql);
 
 if ($resql) {
 	$num = $db->num_rows($resql);
-		$i = 0;
 
-		print '
-			<table class="noborder centpercent">
-		';
+	print '
+		<table class="noborder centpercent">
+	';
 
-		if ($resql->num_rows > 0) {
-			// output data of each row
-			while ($row = $resql->fetch_assoc()) {
-				echo
-					'<tr>' .
-						'<td>' . $row["ref"] . '</td>' .
-					'</tr>'
-				;
-			}
+	if ($resql->num_rows > 0) {
+		// output data of each row
+		while ($row = $resql->fetch_assoc()) {
+			echo
+				'<tr>' .
+					'<td>' . $row['ref'] . '</td>' .
+				'</tr>'
+			;
 		}
-
-		print "</table><br>";
 	}
+
+	print "</table><br>";
+}
