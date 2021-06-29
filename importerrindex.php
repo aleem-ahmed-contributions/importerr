@@ -219,6 +219,9 @@ if (! empty($conf->importerr->enabled) && $user->rights->importerr->read)
 
 print '</div></div></div>';
 
+// [MAIN] My app //
+require('./main.php');
+
 // End of page
 llxFooter();
 $db->close();
