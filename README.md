@@ -1,11 +1,11 @@
-# CUSTOMERINVOICETRANSFER FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
+# IMPORTERR FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
 ## Features
 
 Description of the module...
 
 <!--
-![Screenshot customerinvoicetransfer](img/screenshot_customerinvoicetransfer.png?raw=true "CustomerInvoiceTransfer"){imgmd}
+![Screenshot importerr](img/screenshot_importerr.png?raw=true "Importerr"){imgmd}
 -->
 
 Other external modules are available on [Dolistore.com](https://www.dolistore.com).
@@ -58,11 +58,11 @@ Note: If this screen tell you there is no custom directory, check your setup is 
 
 ### From a GIT repository
 
-- Clone the repository in ```$dolibarr_main_document_root_alt/customerinvoicetransfer```
+- Clone the repository in ```$dolibarr_main_document_root_alt/importerr```
 
 ```sh
 cd ....../custom
-git clone git@github.com:gitlogin/customerinvoicetransfer.git customerinvoicetransfer
+git clone git@github.com:gitlogin/importerr.git importerr
 ```
 
 ### <a name="final_steps"></a>Final steps

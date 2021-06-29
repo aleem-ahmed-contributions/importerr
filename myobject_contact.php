@@ -17,8 +17,8 @@
  */
 
 /**
- *  \file       customerinvoicetransfer/myobject_contact.php
- *  \ingroup    customerinvoicetransfer
+ *  \file       importerr/myobject_contact.php
+ *  \ingroup    importerr
  *  \brief      Tab for contacts linked to MyObject
  */
 
@@ -39,11 +39,11 @@ if (!$res) die("Include of main fails");
 
 require_once DOL_DOCUMENT_ROOT.'/contact/class/contact.class.php';
 require_once DOL_DOCUMENT_ROOT.'/core/class/html.formcompany.class.php';
-dol_include_once('/customerinvoicetransfer/class/myobject.class.php');
-dol_include_once('/customerinvoicetransfer/lib/customerinvoicetransfer_myobject.lib.php');
+dol_include_once('/importerr/class/myobject.class.php');
+dol_include_once('/importerr/lib/importerr_myobject.lib.php');
 
 // Load translation files required by the page
-$langs->loadLangs(array("customerinvoicetransfer@customerinvoicetransfer", "companies", "other", "mails"));
+$langs->loadLangs(array("importerr@importerr", "companies", "other", "mails"));
 
 $id     = (GETPOST('id') ?GETPOST('id', 'int') : GETPOST('facid', 'int')); // For backward compatibility
 $ref    = GETPOST('ref', 'alpha');
@@ -54,7 +54,7 @@ $action = GETPOST('action', 'aZ09');
 // Initialize technical objects
 $object = new MyObject($db);
 $extrafields = new ExtraFields($db);
-$diroutputmassaction = $conf->customerinvoicetransfer->dir_output.'/temp/massgeneration/'.$user->id;
+$diroutputmassaction = $conf->importerr->dir_output.'/temp/massgeneration/'.$user->id;
 $hookmanager->initHooks(array('myobjectcontact', 'globalcard')); // Note that conf->hooks_modules contains array
 // Fetch optionals attributes and labels
 $extrafields->fetch_name_optionals_label($object->table_element);
@@ -65,9 +65,9 @@ include DOL_DOCUMENT_ROOT.'/core/actions_fetchobject.inc.php'; // Must be includ
 // Security check - Protection if external user
 //if ($user->socid > 0) accessforbidden();
 //if ($user->socid > 0) $socid = $user->socid;
-//$result = restrictedArea($user, 'customerinvoicetransfer', $object->id);
+//$result = restrictedArea($user, 'importerr', $object->id);
 
-$permission = $user->rights->customerinvoicetransfer->myobject->write;
+$permission = $user->rights->importerr->myobject->write;
 
 /*
  * Add a new contact
@@ -141,7 +141,7 @@ if ($object->id)
 
 	print dol_get_fiche_head($head, 'contact', $langs->trans("MyObject"), -1, $object->picto);
 
-	$linkback = '<a href="'.dol_buildpath('/customerinvoicetransfer/myobject_list.php', 1).'?restore_lastsearch_values=1'.(!empty($socid) ? '&socid='.$socid : '').'">'.$langs->trans("BackToList").'</a>';
+	$linkback = '<a href="'.dol_buildpath('/importerr/myobject_list.php', 1).'?restore_lastsearch_values=1'.(!empty($socid) ? '&socid='.$socid : '').'">'.$langs->trans("BackToList").'</a>';
 
 	$morehtmlref = '<div class="refidno">';
 	/*

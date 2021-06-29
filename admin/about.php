@@ -17,9 +17,9 @@
  */
 
 /**
- * \file    customerinvoicetransfer/admin/about.php
- * \ingroup customerinvoicetransfer
- * \brief   About page of module CustomerInvoiceTransfer.
+ * \file    importerr/admin/about.php
+ * \ingroup importerr
+ * \brief   About page of module Importerr.
  */
 
 // Load Dolibarr environment
@@ -39,10 +39,10 @@ if (!$res) die("Include of main fails");
 // Libraries
 require_once DOL_DOCUMENT_ROOT.'/core/lib/admin.lib.php';
 require_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
-require_once '../lib/customerinvoicetransfer.lib.php';
+require_once '../lib/importerr.lib.php';
 
 // Translations
-$langs->loadLangs(array("errors", "admin", "customerinvoicetransfer@customerinvoicetransfer"));
+$langs->loadLangs(array("errors", "admin", "importerr@importerr"));
 
 // Access control
 if (!$user->admin) accessforbidden();
@@ -65,20 +65,20 @@ $backtopage = GETPOST('backtopage', 'alpha');
 
 $form = new Form($db);
 
-$page_name = "CustomerInvoiceTransferAbout";
+$page_name = "ImporterrAbout";
 llxHeader('', $langs->trans($page_name));
 
 // Subheader
 $linkback = '<a href="'.($backtopage ? $backtopage : DOL_URL_ROOT.'/admin/modules.php?restore_lastsearch_values=1').'">'.$langs->trans("BackToModuleList").'</a>';
 
-print load_fiche_titre($langs->trans($page_name), $linkback, 'object_customerinvoicetransfer@customerinvoicetransfer');
+print load_fiche_titre($langs->trans($page_name), $linkback, 'object_importerr@importerr');
 
 // Configuration header
-$head = customerinvoicetransferAdminPrepareHead();
-print dol_get_fiche_head($head, 'about', '', 0, 'customerinvoicetransfer@customerinvoicetransfer');
+$head = importerrAdminPrepareHead();
+print dol_get_fiche_head($head, 'about', '', 0, 'importerr@importerr');
 
-dol_include_once('/customerinvoicetransfer/core/modules/modCustomerInvoiceTransfer.class.php');
-$tmpmodule = new modCustomerInvoiceTransfer($db);
+dol_include_once('/importerr/core/modules/modImporterr.class.php');
+$tmpmodule = new modImporterr($db);
 print $tmpmodule->getDescLong();
 
 // Page end

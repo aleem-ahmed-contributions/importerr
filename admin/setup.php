@@ -17,9 +17,9 @@
  */
 
 /**
- * \file    customerinvoicetransfer/admin/setup.php
- * \ingroup customerinvoicetransfer
- * \brief   CustomerInvoiceTransfer setup page.
+ * \file    importerr/admin/setup.php
+ * \ingroup importerr
+ * \brief   Importerr setup page.
  */
 
 // Load Dolibarr environment
@@ -40,11 +40,11 @@ global $langs, $user;
 
 // Libraries
 require_once DOL_DOCUMENT_ROOT."/core/lib/admin.lib.php";
-require_once '../lib/customerinvoicetransfer.lib.php';
+require_once '../lib/importerr.lib.php';
 //require_once "../class/myclass.class.php";
 
 // Translations
-$langs->loadLangs(array("admin", "customerinvoicetransfer@customerinvoicetransfer"));
+$langs->loadLangs(array("admin", "importerr@importerr"));
 
 // Access control
 if (!$user->admin) accessforbidden();
@@ -59,8 +59,8 @@ $scandir = GETPOST('scan_dir', 'alpha');
 $type = 'myobject';
 
 $arrayofparameters = array(
-	'CUSTOMERINVOICETRANSFER_MYPARAM1'=>array('css'=>'minwidth200', 'enabled'=>1),
-	'CUSTOMERINVOICETRANSFER_MYPARAM2'=>array('css'=>'minwidth500', 'enabled'=>1)
+	'IMPORTERR_MYPARAM1'=>array('css'=>'minwidth200', 'enabled'=>1),
+	'IMPORTERR_MYPARAM2'=>array('css'=>'minwidth500', 'enabled'=>1)
 );
 
 $error = 0;
@@ -105,7 +105,7 @@ if ($action == 'updateMask') {
 	$dirmodels = array_merge(array('/'), (array) $conf->modules_parts['models']);
 	foreach ($dirmodels as $reldir)
 	{
-		$file = dol_buildpath($reldir."core/modules/customerinvoicetransfer/doc/pdf_".$modele."_".strtolower($tmpobjectkey).".modules.php", 0);
+		$file = dol_buildpath($reldir."core/modules/importerr/doc/pdf_".$modele."_".strtolower($tmpobjectkey).".modules.php", 0);
 		if (file_exists($file))
 		{
 			$filefound = 1;
@@ -138,7 +138,7 @@ elseif ($action == 'setmod') {
 	// TODO Check if numbering module chosen can be activated by calling method canBeActivated
 	$tmpobjectkey = GETPOST('object');
 	if (!empty($tmpobjectkey)) {
-		$constforval = 'CUSTOMERINVOICETRANSFER_'.strtoupper($tmpobjectkey)."_ADDON";
+		$constforval = 'IMPORTERR_'.strtoupper($tmpobjectkey)."_ADDON";
 		dolibarr_set_const($db, $constforval, $value, 'chaine', 0, '', $conf->entity);
 	}
 }
@@ -151,7 +151,7 @@ elseif ($action == 'set') {
 	if ($ret > 0) {
 		$tmpobjectkey = GETPOST('object');
 		if (!empty($tmpobjectkey)) {
-			$constforval = 'CUSTOMERINVOICETRANSFER_'.strtoupper($tmpobjectkey).'_ADDON_PDF';
+			$constforval = 'IMPORTERR_'.strtoupper($tmpobjectkey).'_ADDON_PDF';
 			if ($conf->global->$constforval == "$value") dolibarr_del_const($db, $constforval, $conf->entity);
 		}
 	}
@@ -161,7 +161,7 @@ elseif ($action == 'set') {
 elseif ($action == 'setdoc') {
 	$tmpobjectkey = GETPOST('object');
 	if (!empty($tmpobjectkey)) {
-		$constforval = 'CUSTOMERINVOICETRANSFER_'.strtoupper($tmpobjectkey).'_ADDON_PDF';
+		$constforval = 'IMPORTERR_'.strtoupper($tmpobjectkey).'_ADDON_PDF';
 		if (dolibarr_set_const($db, $constforval, $value, 'chaine', 0, '', $conf->entity)) {
 			// The constant that was read before the new set
 			// We therefore requires a variable to have a coherent view
@@ -177,7 +177,7 @@ elseif ($action == 'setdoc') {
 } elseif ($action == 'unsetdoc') {
 	$tmpobjectkey = GETPOST('object');
 	if (!empty($tmpobjectkey)) {
-		$constforval = 'CUSTOMERINVOICETRANSFER_'.strtoupper($tmpobjectkey).'_ADDON_PDF';
+		$constforval = 'IMPORTERR_'.strtoupper($tmpobjectkey).'_ADDON_PDF';
 		dolibarr_del_const($db, $constforval, $conf->entity);
 	}
 }
@@ -192,20 +192,20 @@ $form = new Form($db);
 
 $dirmodels = array_merge(array('/'), (array) $conf->modules_parts['models']);
 
-$page_name = "CustomerInvoiceTransferSetup";
+$page_name = "ImporterrSetup";
 llxHeader('', $langs->trans($page_name));
 
 // Subheader
 $linkback = '<a href="'.($backtopage ? $backtopage : DOL_URL_ROOT.'/admin/modules.php?restore_lastsearch_values=1').'">'.$langs->trans("BackToModuleList").'</a>';
 
-print load_fiche_titre($langs->trans($page_name), $linkback, 'object_customerinvoicetransfer@customerinvoicetransfer');
+print load_fiche_titre($langs->trans($page_name), $linkback, 'object_importerr@importerr');
 
 // Configuration header
-$head = customerinvoicetransferAdminPrepareHead();
-print dol_get_fiche_head($head, 'settings', '', -1, "customerinvoicetransfer@customerinvoicetransfer");
+$head = importerrAdminPrepareHead();
+print dol_get_fiche_head($head, 'settings', '', -1, "importerr@importerr");
 
 // Setup page goes here
-echo '<span class="opacitymedium">'.$langs->trans("CustomerInvoiceTransferSetupPage").'</span><br><br>';
+echo '<span class="opacitymedium">'.$langs->trans("ImporterrSetupPage").'</span><br><br>';
 
 
 if ($action == 'edit')
@@ -259,7 +259,7 @@ if ($action == 'edit')
 }
 
 
-$moduledir = 'customerinvoicetransfer';
+$moduledir = 'importerr';
 $myTmpObjects = array();
 $myTmpObjects['MyObject'] = array('includerefgeneration'=>0, 'includedocgeneration'=>0);
 
@@ -327,7 +327,7 @@ foreach ($myTmpObjects as $myTmpObjectKey => $myTmpObjectArray) {
 								print '</td>'."\n";
 
 								print '<td class="center">';
-								$constforvar = 'CUSTOMERINVOICETRANSFER_'.strtoupper($myTmpObjectKey).'_ADDON';
+								$constforvar = 'IMPORTERR_'.strtoupper($myTmpObjectKey).'_ADDON';
 								if ($conf->global->$constforvar == $file)
 								{
 									print img_picto($langs->trans("Activated"), 'switch_on');
@@ -474,7 +474,7 @@ foreach ($myTmpObjects as $myTmpObjectKey => $myTmpObjectArray) {
 
 										// Default
 										print '<td class="center">';
-										$constforvar = 'CUSTOMERINVOICETRANSFER_'.strtoupper($myTmpObjectKey).'_ADDON';
+										$constforvar = 'IMPORTERR_'.strtoupper($myTmpObjectKey).'_ADDON';
 										if ($conf->global->$constforvar == $name) {
 											//print img_picto($langs->trans("Default"), 'on');
 											// Even if choice is the default value, we allow to disable it. Replace this with previous line if you need to disable unset

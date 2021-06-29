@@ -1,4 +1,4 @@
-# CHANGELOG CUSTOMERINVOICETRANSFER FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
+# CHANGELOG IMPORTERR FOR [DOLIBARR ERP CRM](https://www.dolibarr.org)
 
 ## 1.0
 
